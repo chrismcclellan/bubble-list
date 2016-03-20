@@ -1,0 +1,67 @@
+{{!JSONStringify config.share}}
+
+{{!> partials/search-form/default}}
+
+{{!> partials/top-bar/default}}
+
+<div class="container company-list">
+
+    {{#each companies}}
+
+        <div class="row expanded company align-middle {{#unless @index}}current{{/unless}}">
+
+            <div class="large-2 columns rank">
+                <a class="#rank" data-rank="{{rank}}">{{rank}}</a>
+            </div>
+
+            <div class="large-3 columns name">
+                <a class="#name" data-name="{{company}}">{{company}}</a>
+            </div>
+
+            <div class="large-3 large-offset-5 columns thumbnail">
+                <figure style="background-image: url('/images/companies/{{rank}}.jpeg');">
+                    <img class="thumb" src="/images/companies/{{rank}}.jpeg" />
+                    <img class="spacer" src="/images/spacer-1x1.gif" width="1" height="1" />
+                </figure>
+            </div>
+
+            <div class="large-4 columns profile">
+                <h3>{{company}}</h3>
+                <p>{{bio}}</p>
+            </div>
+
+        </div>
+
+    {{/each}}
+
+</div>
+
+<div class="mini ranks text-center">
+    <div class="inner">
+        <ul class="no-bullet">
+            {{#each companies}}
+                <li>
+                    <a class="#rank" data-rank="{{rank}}">{{rank}}</a>
+                </li>
+            {{/each}}
+        </ul>
+    </div>
+</div>
+
+<div class="mini names">
+    <div class="inner">
+        <ul class="no-bullet">
+            {{#each companies}}
+                <li>
+                    <a class="#name" data-name="{{company}}">{{company}}</a>
+                </li>
+            {{/each}}
+        </ul>
+    </div>
+</div>
+
+<div class="background-wrapper">
+    <div class="background previous" style=""></div>
+    <div class="background current" style="background-image: url('/images/companies/blur/01.jpeg');"></div>
+    <div class="background next" style="background-image: url('/images/companies/blur/02.jpeg');"></div>
+</div>

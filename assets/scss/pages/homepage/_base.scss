@@ -1,0 +1,148 @@
+body.homepage {
+    background-color: $black;
+
+    &:after {
+        content: '';
+        width: 90%;
+        height: 1px;
+        position: fixed;
+        top: 50vh;
+        right: 0;
+        background-color: $white;
+    }
+
+    .off-canvas-content {
+        background-color: transparent;
+    }
+
+    .background-wrapper {
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        position: fixed;
+        z-index: 0;
+        display: block;
+        opacity: .75;
+
+        .background {
+            display: none;
+            width: 100%;
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            @include background-size(cover);
+
+            &.current {
+                display: block;
+            }
+        }
+    }
+
+    .company-list {
+        padding-top: 50vh;
+        padding-bottom: 50vh;
+        position: relative;
+        z-index: 9999;
+
+        .company {
+            padding: 5vh 0;
+            // margin-top: -50%;
+            @include transform(translateY(-50%));
+
+            &.prev {}
+
+            &.current {}
+
+            &.next {}
+        }
+
+        .rank {
+            display: none;
+            font-size: rem-calc(72);
+            color: $white;
+        }
+
+        .name {
+            display: none;
+            text-transform: uppercase;
+            color: $white;
+        }
+
+        .thumbnail {
+            padding: 0 40px;
+
+            figure {
+                background-position: center;
+                background-repeat: no-repeat;
+                @include background-size(auto 110%);
+                @include border-radius(50%);
+                overflow: hidden;
+            }
+
+            .thumb {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                visibility: hidden;
+            }
+
+            .spacer {
+                display: block;
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        .profile {
+            color: $white;
+        }
+    }
+
+    .mini {
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: block;
+        height: 100vh;
+        z-index: 9999;
+        overflow: hidden;
+
+        ul {
+            padding-top: 50vh;
+            padding-bottom: 50vh;
+        }
+
+        li {
+            color: $white;
+
+            a {
+                display: block;
+                @include transform(translateY(-50%));
+                color: $white;
+            }
+        }
+
+        &.ranks {
+            left: 0;
+            width: 10vw;
+            font-size: rem-calc(72);
+
+            li {
+                line-height: 200vh;
+            }
+        }
+
+        &.names {
+            left: 10vw;
+            width: 30vw;
+            text-transform: uppercase;
+
+            li {
+                line-height: 80px;
+            }
+        }
+    }
+}

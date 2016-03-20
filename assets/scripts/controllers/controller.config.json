@@ -1,0 +1,9 @@
+{
+
+        "page":     "../views/pages/page",
+        "post":     "../views/pages/post",
+        "search":   "../views/pages/search",
+        "homepage": "../views/pages/homepage",
+        "error404": "../views/pages/404"
+
+}
