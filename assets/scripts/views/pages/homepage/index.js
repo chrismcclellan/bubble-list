@@ -23,6 +23,9 @@ module.exports = View.extend({
         this.$miniNames = this.$('.mini.names .inner');
         this.$bgWrapper = this.$('.background-wrapper');
 
+        var bound = _.bind(this._setCurrentBg, this);
+        this.debounced_bg_setter = _.debounce(bound, 300);
+
         this._onResize();
         // console.log('pages/homepage.onAttach');
     },
@@ -67,16 +70,19 @@ module.exports = View.extend({
                 $this.prev().addClass('previous');
                 $this.addClass('current');
 
-                self._setCurrentBg($this.attr('data-blurry-bg'));
+                self._current_bg = $this.attr('data-blurry-bg');
+
+                console.log('call bg setter');
+                self.debounced_bg_setter();
 
             }
 
         });
     },
 
-    _setCurrentBg: function(bg_path) {
+    _setCurrentBg: function() {
 
-        console.log(bg_path);
+        var bg_path = this._current_bg;
 
         if (!bg_path) return;
 
