@@ -1,9 +1,9 @@
 /**
  * Add Helpers and Partials to Handlebarsobj
  */
-var Handlebars = require('sails/node_modules/express-handlebars/node_modules/handlebars');
 var path = require('path');
 var fs = require('fs');
+var Handlebars = require(path.join(__dirname, '../node_modules/sails/node_modules/express-handlebars/node_modules/handlebars'));
 
 // HELPERS
 // ===============================================================
