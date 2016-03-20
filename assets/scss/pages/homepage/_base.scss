@@ -23,18 +23,21 @@ body.homepage {
         position: fixed;
         z-index: 0;
         display: block;
-        opacity: .75;
+        opacity: .6;
 
         .background {
-            display: none;
+            opacity: 0;
+            display: block;
+            position: absolute;
             width: 100%;
             height: 100%;
             background-position: center;
             background-repeat: no-repeat;
             @include background-size(cover);
+            @include transition(opacity .2s);
 
-            &.current {
-                display: block;
+            &.fade-in {
+                opacity: 1;
             }
         }
     }
@@ -46,20 +49,15 @@ body.homepage {
         z-index: 9999;
 
         .company {
+            min-height: 50vh;
             padding: 5vh 0;
             // margin-top: -50%;
             @include transform(translateY(-50%));
-
-            &.prev {}
-
-            &.current {}
-
-            &.next {}
         }
 
         .rank {
             display: none;
-            font-size: rem-calc(72);
+            font-size: rem-calc(100);
             color: $white;
         }
 
@@ -128,10 +126,10 @@ body.homepage {
         &.ranks {
             left: 0;
             width: 10vw;
-            font-size: rem-calc(72);
+            font-size: rem-calc(100);
 
             li {
-                line-height: 200vh;
+                line-height: 100vh;
             }
         }
 

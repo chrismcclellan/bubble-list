@@ -8,7 +8,7 @@
 
     {{#each companies}}
 
-        <div class="row expanded company align-middle {{#unless @index}}current{{/unless}}">
+        <div class="row expanded company align-middle" data-blurry-bg="/images/companies/blur/{{rank}}.jpeg">
 
             <div class="large-2 columns rank">
                 <a class="#rank" data-rank="{{rank}}">{{rank}}</a>
@@ -61,7 +61,5 @@
 </div>
 
 <div class="background-wrapper">
-    <div class="background previous" style=""></div>
-    <div class="background current" style="background-image: url('/images/companies/blur/01.jpeg');"></div>
-    <div class="background next" style="background-image: url('/images/companies/blur/02.jpeg');"></div>
+    <div class="background" style="background-image: url('/images/companies/blur/01.jpeg');"></div>
 </div>
