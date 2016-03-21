@@ -14,7 +14,7 @@ module.exports = View.extend({
         $window.bind('scroll.homepage', _.bind(this._onScroll, this));
         $window.bind('resize.homepage', _.bind(this._onResize, this));
 
-        $window.on('scroll.homepageStop', _.debounce(_.bind(this._onScrollStop, this), 100, {leading: false}));
+        $window.on('scroll.homepageStop', _.debounce(_.bind(this._onScrollStop, this), 100));
     },
 
     onAttach: function() {
@@ -37,6 +37,10 @@ module.exports = View.extend({
     },
 
     _onScroll: function(event) {
+
+        // if (this.locked) return;
+
+        // console.log('_onScroll', this.locked);
 
         // if (this.scrollLock) return console.log('scrollLocked - return');
 
@@ -91,7 +95,6 @@ module.exports = View.extend({
                 '-webkit-transform': rule,
                 '-moz-transform': rule,
                 '-o-transform': rule,
-                '-ms-transform': rule,
                 'transform': rule
             };
 
@@ -123,6 +126,22 @@ module.exports = View.extend({
 
     },
 
+    _scrollToCurrent: function() {
+
+        this.locked = true;
+
+        var self = this;
+        var $current = this.$('.company.current');
+        var offset = $current.offset().top;
+        var height = $current.outerHeight();
+        var center = offset + (height/2);
+
+        $("html, body").stop().animate({scrollTop: offset - (height/2)}, '200', 'swing', function() {
+            self.locked = false;
+           // alert("Finished animating");
+        });
+    },
+
     _scrollRanks: function() {
         var inner_height = this._mini_ranks_height;
         var pixels = inner_height * this._percent_scrolled / 100;
@@ -137,6 +156,9 @@ module.exports = View.extend({
 
     _onScrollStop: function(event) {
 
-        // console.log
+        if (this.locked) return;
+
+        // console.log('onScrollStop');
+        this._scrollToCurrent();
     }
 });
