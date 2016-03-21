@@ -73,7 +73,6 @@ body.homepage {
             .thumbnail {
                 @include transform(scale(.5) translate3d(0, 0, 0));
                 // @include perspective(150px);
-                padding: 0 20px;
 
                 figure {
                     background-position: center;
