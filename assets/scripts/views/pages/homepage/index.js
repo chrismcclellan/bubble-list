@@ -56,12 +56,14 @@ module.exports = View.extend({
             var $this = $(this);
             var offset = $this.offset().top;
             var height = $this.outerHeight();
-            var center = Math.round(offset + (height/2));
+            var center = offset + (height/2);
             var win_height = $window.height();
-            var win_center = Math.round(self._scroll_top + (win_height/2));
+            var win_center = self._scroll_top + (win_height/2);
             var threshold = offset + height;
             var is_current = false;
             var scale = 1;
+
+            if (offset > self._scroll_top + (win_height*1.5)) { return false; }
 
             // find prev, current, and next
             if (win_center > offset && win_center < threshold && !$this.hasClass('current')) {
@@ -72,10 +74,28 @@ module.exports = View.extend({
 
                 self._current_bg = $this.attr('data-blurry-bg');
 
-                console.log('call bg setter');
                 self.debounced_bg_setter();
-
             }
+
+            var to_center = center - win_center;
+            if (to_center < 0) {
+                to_center *= -1;
+            }
+
+            var percent = 1 - (to_center / win_height);
+            percent = percent > 1 ? 1 : percent;
+            percent = percent < 0 ? 0 : percent;
+
+            var rule = 'scale(' + percent + ')'; // rotateX(' + ((1 - percent)*100) + 'deg)';
+            var rules = {
+                '-webkit-transform': rule,
+                '-moz-transform': rule,
+                '-o-transform': rule,
+                '-ms-transform': rule,
+                'transform': rule
+            };
+
+            $('.thumbnail', $this).css(rules);
 
         });
     },
@@ -117,6 +137,6 @@ module.exports = View.extend({
 
     _onScrollStop: function(event) {
 
-        console.log
+        // console.log
     }
 });
