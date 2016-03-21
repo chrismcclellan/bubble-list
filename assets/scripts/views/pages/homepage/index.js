@@ -7,14 +7,17 @@ module.exports = View.extend({
 
     initialize: function(options) {
 
+        $window.scrollTop(0, 0);
+
         console.log('pages/homepage.initialize');
 
         View.prototype.initialize.apply(this, arguments);
 
         $window.bind('scroll.homepage', _.bind(this._onScroll, this));
-        $window.bind('resize.homepage', _.bind(this._onResize, this));
+        $window.bind('resize.homepage', _.debounce(_.bind(this._onResize, this), 100));
 
         $window.on('scroll.homepageStop', _.debounce(_.bind(this._onScrollStop, this), 100));
+
     },
 
     onAttach: function() {
